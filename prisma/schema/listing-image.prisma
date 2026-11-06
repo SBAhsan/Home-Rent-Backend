@@ -1,0 +1,10 @@
+model ListingImage {
+  id        String   @id @default(uuid())
+  listingId String
+  url       String
+  createdAt DateTime @default(now())
+
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId])
+}

@@ -1,0 +1,12 @@
+model Landmark {
+  id        String   @id @default(uuid())
+  name      String
+  nameBn    String
+  areaId    String
+  createdAt DateTime @default(now())
+
+  area     Area      @relation(fields: [areaId], references: [id])
+  listings Listing[]
+
+  @@index([areaId])
+}

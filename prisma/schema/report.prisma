@@ -1,0 +1,14 @@
+model Report {
+  id         String       @id @default(uuid())
+  listingId  String
+  reporterId String
+  reason     String
+  status     ReportStatus @default(OPEN)
+  createdAt  DateTime     @default(now())
+
+  listing  Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  reporter User    @relation(fields: [reporterId], references: [id])
+
+  @@unique([listingId, reporterId])
+  @@index([status])
+}

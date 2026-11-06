@@ -1,0 +1,36 @@
+model Listing {
+  id              String        @id @default(uuid())
+  landlordId      String
+  title           String
+  description     String
+  rent            Int
+  advance         Int           @default(0)
+  roomType        RoomType
+  acceptedTenants TenantType[]
+  furnished       Boolean       @default(false)
+  areaId          String
+  landmarkId      String?
+  address         String
+  availableFrom   DateTime
+  status          ListingStatus @default(PENDING)
+  lastConfirmedAt DateTime      @default(now())
+  expiresAt       DateTime
+  reminderSentAt  DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  landlord  User                @relation(fields: [landlordId], references: [id])
+  area      Area                @relation(fields: [areaId], references: [id])
+  landmark  Landmark?           @relation(fields: [landmarkId], references: [id])
+  images    ListingImage[]
+  inquiries Inquiry[]
+  saved     SavedListing[]
+  reports   Report[]
+  tokens    AvailabilityToken[]
+
+  @@index([landlordId])
+  @@index([areaId])
+  @@index([status])
+  @@index([rent])
+  @@index([expiresAt])
+}

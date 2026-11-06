@@ -1,0 +1,17 @@
+model Verification {
+  id           String             @id @default(uuid())
+  userId       String
+  nidImageUrl  String
+  selfieUrl    String
+  status       VerificationStatus @default(PENDING)
+  rejectReason String?
+  reviewedById String?
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  user       User  @relation("VerificationOwner", fields: [userId], references: [id])
+  reviewedBy User? @relation("VerificationReviewer", fields: [reviewedById], references: [id])
+
+  @@index([userId])
+  @@index([status])
+}

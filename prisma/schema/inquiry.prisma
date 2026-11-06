@@ -1,0 +1,13 @@
+model Inquiry {
+  id        String   @id @default(uuid())
+  listingId String
+  renterId  String
+  message   String
+  createdAt DateTime @default(now())
+
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  renter  User    @relation(fields: [renterId], references: [id])
+
+  @@index([listingId])
+  @@index([renterId])
+}

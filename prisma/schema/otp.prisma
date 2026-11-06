@@ -1,0 +1,10 @@
+model OtpCode {
+  id        String    @id @default(uuid())
+  phone     String
+  codeHash  String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([phone])
+}

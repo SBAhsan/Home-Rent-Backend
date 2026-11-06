@@ -1,0 +1,18 @@
+model User {
+  id              String     @id @default(uuid())
+  name            String
+  phone           String     @unique
+  passwordHash    String
+  role            Role       @default(RENTER)
+  isPhoneVerified Boolean    @default(false)
+  status          UserStatus @default(ACTIVE)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  listings              Listing[]
+  verifications         Verification[] @relation("VerificationOwner")
+  reviewedVerifications Verification[] @relation("VerificationReviewer")
+  inquiries             Inquiry[]
+  savedListings         SavedListing[]
+  reports               Report[]
+}

@@ -1,0 +1,47 @@
+enum Role {
+  RENTER
+  LANDLORD
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+enum RoomType {
+  WHOLE_FLAT
+  SINGLE_ROOM
+  SEAT_SUBLET
+  SHARED
+}
+
+enum TenantType {
+  FAMILY
+  BACHELOR
+  STUDENT
+  FEMALE_ONLY
+  MALE_ONLY
+  WORKING_PROFESSIONAL
+  ANY
+}
+
+enum ListingStatus {
+  PENDING
+  ACTIVE
+  RENTED
+  EXPIRED
+  HIDDEN
+}
+
+enum VerificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ReportStatus {
+  OPEN
+  RESOLVED
+  DISMISSED
+}

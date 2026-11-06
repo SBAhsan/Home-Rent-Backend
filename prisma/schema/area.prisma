@@ -1,0 +1,14 @@
+model Area {
+  id        String   @id @default(uuid())
+  name      String
+  nameBn    String
+  parentId  String?
+  createdAt DateTime @default(now())
+
+  parent    Area?      @relation("AreaTree", fields: [parentId], references: [id])
+  children  Area[]     @relation("AreaTree")
+  landmarks Landmark[]
+  listings  Listing[]
+
+  @@index([parentId])
+}

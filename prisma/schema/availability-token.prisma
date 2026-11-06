@@ -1,0 +1,12 @@
+model AvailabilityToken {
+  id        String    @id @default(uuid())
+  listingId String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId])
+}
